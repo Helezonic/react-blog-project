@@ -3,8 +3,9 @@ import { authserv } from "../appwrite/authServ";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { login, logout } from "../app/authSlice";
-import {Container, Button, Input} from "./index"
+import { Container, Button, Input} from "./index"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Signup () {
@@ -12,15 +13,18 @@ export default function Signup () {
   const status = useSelector((state) => state.status)
   const {register,handleSubmit} = useForm()
   const [error,setError] = useState("")
+  const navigate = useNavigate()
 
-  const loginForm = async(data) => {
+  const signUpForm = async(data) => {
     try {
         setError("")
-      //Check whether logged in or session exists
+     /*  //Check whether logged in or session exists
       console.log(status, "check status") 
       if(status === true) dispatch(logout())
-      const logoutsess = await authserv.logout()
-      console.log(logoutsess, "DELETE SESSION RETURN")
+      if(await authserv.getUser()){
+        const logoutsess = await authserv.logout()
+        console.log(logoutsess, "DELETE SESSION RETURN")
+      } */
     
       //Then create an account and start a session
       const sess = await authserv.createAccount(data)
@@ -29,6 +33,7 @@ export default function Signup () {
         const userData = await authserv.getUser()
         dispatch(login(userData))
         console.log(userData, "GET USER RETURN")
+        navigate("/")
       }
       
     } catch (error) {
@@ -43,7 +48,7 @@ export default function Signup () {
         <Container>
         <h1 className="text-3xl mx-auto w-full p-2 rounded-lg font-bold text-center text-white bg-violet-800">SIGN UP</h1>
         {error && <p className="text-sm font-semibold my-2 text-red-200 w-fit mx-auto">{error}</p>}
-          <form className="flex flex-col gap-2 align-middle p-3" onSubmit={handleSubmit(loginForm)}>
+          <form className="flex flex-col gap-2 align-middle p-3" onSubmit={handleSubmit(signUpForm)}>
             <Input
             label="Email:"
             type='email'

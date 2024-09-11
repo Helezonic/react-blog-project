@@ -36,9 +36,10 @@ class AuthService{
 
   getUser = async() => {
     try {
-      return await this.account.get()
+      return await this.account.getSession("current")
     } catch (error) {
       throw error
+      console.log("error here")
     }
   }
 

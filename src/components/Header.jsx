@@ -1,8 +1,7 @@
 import { useNavigate, Link } from "react-router-dom"
-import Container from "./Container"
 import { useSelector } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
-import {Button} from "./index";
+import {Button, Logout} from "./index";
+
 
 
 
@@ -10,7 +9,7 @@ import {Button} from "./index";
 export default function Header () {
   const authStatus = useSelector((state)=>state.status)
   //const navigate = useNavigate()
-  const navitems = [
+  const navitems = [ //Only for Navigating to Pages, hence no Logout
     {
       name : "Home",
       slug : "/",
@@ -40,8 +39,8 @@ export default function Header () {
   ]
   return (
     <>
-      <div className="border-2 bg-gray-300 ">
-        <nav className="my-2 px-4 flex justify-evenly w-fit mx-auto">
+      <div className="border-2 bg-gray-300 flex">
+        <nav className=" px-4 flex justify-evenly w-fit mx-auto">
           {navitems.map(page => 
             page.active?
               
@@ -49,7 +48,7 @@ export default function Header () {
               key={page.name}
               to={page.slug} 
               className="font-bold mx-3 ">
-              <Button className='bg-cyan-300 w-fit'>
+              <Button className=' w-fit'>
               {page.name}
               </Button>
               </Link> 
@@ -59,6 +58,7 @@ export default function Header () {
               
           )}
         </nav>
+        <Logout/>
       </div>
 
     </>
