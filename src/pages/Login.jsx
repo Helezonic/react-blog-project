@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Input, Button } from "./index";
+import { Container, Input, Button } from "../components/index";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { authserv } from "../appwrite/authServ";
@@ -9,7 +9,6 @@ import { login } from "../app/authSlice";
 
 export default function Login() {
   const [error,setError] = useState("")
-  
   const {register, handleSubmit} = useForm()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -22,7 +21,7 @@ export default function Login() {
       if (sess) {
         const userData = await authserv.getUser()
         dispatch(login(userData))
-        console.log("Session Started, Logged in")
+        console.log("Session Started")
         navigate("/")
       }
     } catch (error) {

@@ -3,14 +3,13 @@ import { authserv } from "../appwrite/authServ";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { login, logout } from "../app/authSlice";
-import { Container, Button, Input} from "./index"
+import { Container, Button, Input} from "../components/index"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 export default function Signup () {
   const dispatch = useDispatch()
-  const status = useSelector((state) => state.status)
   const {register,handleSubmit} = useForm()
   const [error,setError] = useState("")
   const navigate = useNavigate()

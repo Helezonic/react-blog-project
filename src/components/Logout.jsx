@@ -13,6 +13,7 @@ export default function Logout () {
     const logoutHandler = () => {
         authserv.logout().then(() => {
             dispatch(logout())
+            console.log("Logged out" )
             navigate("/")
     })
     }

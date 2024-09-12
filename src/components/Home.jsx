@@ -1,34 +1,19 @@
 import { useEffect, useState } from "react"
-import { authserv } from "../appwrite/authServ"
-import { useDispatch, useSelector } from "react-redux"
-import { login,logout } from "../app/authSlice"
+import { useSelector } from "react-redux"
+
 
 
 export default function Home() {
-  const [loading,setLoading] = useState(true)
-  const dispatch = useDispatch()
   const authStatus = useSelector((state)=>state.status)
-  const [user,setUser] = useState("")
+  const userData= useSelector((state)=>state.userData)
+  const [user,setUser] = useState("user")
 
-  const loadingState = () => {
-    console.log("Home session check")
-    authserv.getUser()
-    .then((userData) => {
-      if(userData) {
-        
-        dispatch(login(userData))
-        setUser(userData.providerUid)
-        console.log("Session running", authStatus)
-      }
-      else {dispatch(logout)}
-    })
-    .finally(() => setLoading(false))
-  }
-
-  useEffect(()=>{loadingState()}, [])
-
+  useEffect(()=>{
+    userData && setUser(userData?.providerUid)
+    console.log("authstatus : ", authStatus)
+  },[authStatus])
   
-  return (!loading && authStatus)? (
+  return authStatus? (
     <>
       <div className="font-semibold w-fit mx-auto text-xl">
       Welcome {user}
