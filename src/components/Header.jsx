@@ -39,7 +39,7 @@ export default function Header () {
   ]
   return (
     <>
-      <div className="border-2 bg-gray-300 flex">
+      <div className="bg-blue-800 flex">
         <nav className=" px-4 flex justify-evenly w-fit mx-auto">
           {navitems.map(page => 
             page.active?
@@ -48,7 +48,7 @@ export default function Header () {
               key={page.name}
               to={page.slug} 
               className="font-bold mx-3 ">
-              <Button className=' w-fit'>
+              <Button className='text-white w-fit'>
               {page.name}
               </Button>
               </Link> 
@@ -58,7 +58,10 @@ export default function Header () {
               
           )}
         </nav>
+        <div className="absolute right-0">
         <Logout/>
+        </div>
+        
       </div>
 
     </>

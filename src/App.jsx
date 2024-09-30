@@ -12,6 +12,7 @@ function App() {
   const [loading,setLoading] = useState(true)
   const dispatch = useDispatch()
 
+  /* LOADING STATE :  To check whether session is logged in or not */
   const loadingState = () => {
     console.log("Loading session check")
     authserv.getUser()
@@ -30,7 +31,7 @@ function App() {
 
   return !loading? (
     <>
-    <div className='bg-blue-300 h-screen'>
+    <div className='bg-blue-300'>
     <Header/>
       <div className='p-4'>
         <Outlet/>

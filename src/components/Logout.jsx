@@ -19,7 +19,7 @@ export default function Logout () {
     }
     return authStatus? (
         <>
-         <button className='px-3 p-2 m-3 font-semibold w-1/4 mx-auto duration-200 hover:bg-blue-100 rounded-xl'
+         <button className='text-white w-fit px-3 p-2 m-3 font-semibold w-1/4 duration-200 hover:bg-blue-100 hover:text-black rounded-xl'
          onClick={logoutHandler}>Log Out</button>
         </>
     ) : null
