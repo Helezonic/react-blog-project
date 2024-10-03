@@ -1,6 +1,6 @@
-import PostForm from "../components/Postform";
+import PostForm from "./Postform";
 
-export default function Addpost () {
+export default function Editpost () {
     return (
         <>
             <div>Edit post</div>

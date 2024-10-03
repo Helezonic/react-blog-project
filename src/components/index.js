@@ -11,8 +11,9 @@ import Logout from "./Logout";
 import Select from "./Select";
 import RTE from "./RTE";
 import Post from "./Post";
+import Editpost from "./Editpost";
 
 
 
 
-export {Header, Home, Container, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post} 
+export {Header, Home, Container, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post, Editpost} 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { Home, Signup, Login, Allpost, Addpost, Post } from "./components/index.js"
+import { Home, Signup, Login, Allpost, Addpost, Post, Editpost } from "./components/index.js"
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from 'react-router-dom'
