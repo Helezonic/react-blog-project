@@ -4,7 +4,7 @@ export const conf = {
   appwrite_database: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
   appwrite_collection: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
   appwrite_bucket: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
-  tinymce_api: String(import.meta.env.VITE_TINYMCE_APIKEY)
+  tinymce_api: String(import.meta.env.VITE_TINYMCE_API)
 }
 
 
