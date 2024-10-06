@@ -7,7 +7,7 @@ import {Button, Logout} from "./index";
 
 
 export default function Header () {
-  const authStatus = useSelector((state)=>state.status)
+  const authStatus = useSelector((state)=>state.auth.status)
   //const navigate = useNavigate()
   const navitems = [ //Only for Navigating to Pages, hence no Logout
     {
@@ -39,7 +39,7 @@ export default function Header () {
   ]
   return (
     <>
-      <div className="bg-blue-800 flex">
+      <div className="bg-violet-800 flex px-2">
         <nav className=" px-4 flex justify-evenly w-fit mx-auto">
           {navitems.map(page => 
             page.active?
@@ -48,7 +48,7 @@ export default function Header () {
               key={page.name}
               to={page.slug} 
               className="font-bold mx-3 ">
-              <Button className='text-white w-fit'>
+              <Button className='text-white w-fit active:bg-blue-800'>
               {page.name}
               </Button>
               </Link> 
@@ -58,7 +58,7 @@ export default function Header () {
               
           )}
         </nav>
-        <div className="absolute right-0">
+        <div className="absolute right-3">
         <Logout/>
         </div>
         

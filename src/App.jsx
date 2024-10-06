@@ -7,14 +7,17 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import LoaderAnimation from './components/LoaderAnimation'
 
 function App() {
-  const [loading,setLoading] = useState(true)
+  const [isLoading,setLoading] = useState(true)
   const dispatch = useDispatch()
+  const loadState = useSelector((state) => state.load.status)
 
   /* LOADING STATE :  To check whether session is logged in or not */
   const loadingState = () => {
     console.log("Loading session check")
+    console.log("STATE - ", loadState)
     authserv.getUser()
     .then((userData) => {
       if(userData) {
@@ -24,23 +27,28 @@ function App() {
     })
     .finally(() => {
       setLoading(false)
+      
     })
   }
 
   useEffect(()=>{loadingState()}, [])
 
-  return !loading? (
+  return !isLoading? (
     <>
-    <div className='bg-blue-300'>
-    <Header/>
-      <div className='p-4'>
-        <Outlet/>
-      </div>
     
-    <Footer/>
-    </div>
+      <div className=' fixed w-full top-0 z-10'>
+        <Header/>
+      </div>
+      <div className='flex flex-col min-h-screen w-full bg-indigo-300'>
+        <div className='flex-grow py-24  '>
+          {loadState? <LoaderAnimation/> : <Outlet/>  }
+        </div>
+        <div className='w-full'>
+          <Footer/>
+        </div>  
+      </div>
     </>
-  ) : null
+  ) : <LoaderAnimation/>
 }
 
 export default App

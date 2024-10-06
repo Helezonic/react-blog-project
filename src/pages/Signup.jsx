@@ -44,10 +44,10 @@ export default function Signup () {
   return (
     <> 
       <div>
-        <Container>
-        <h1 className="text-3xl mx-auto w-full p-2 rounded-lg font-bold text-center text-white bg-violet-800">SIGN UP</h1>
-        {error && <p className="text-sm font-semibold my-2 text-red-200 w-fit mx-auto">{error}</p>}
-          <form className="flex flex-col gap-2 align-middle p-3" onSubmit={handleSubmit(signUpForm)}>
+        <Container title="SIGN UP">
+        
+        {error && <p className="text-sm font-semibold mb-2 text-red-200 w-fit mx-auto">{error}</p>}
+          <form className="flex flex-col gap-2 align-middle p-2" onSubmit={handleSubmit(signUpForm)}>
             <Input
             label="Email:"
             type='email'
@@ -75,7 +75,7 @@ export default function Signup () {
             )}
             />
 
-            <Button type="submit" className='bg-green-200'>
+            <Button type="submit" className='bg-green-300'>
               Submit
             </Button>
             

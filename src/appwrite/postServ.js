@@ -14,7 +14,6 @@ class PostService {
 
     async createPost({title, slug, content, status, featuredImage, userId}) {
         try {
-            console.log({title,slug,content,status,featuredImage,userId})
             return await this.databases.createDocument(
                 conf.appwrite_database,
                 conf.appwrite_collection,
@@ -101,11 +100,12 @@ class PostService {
         }
     }
 
-    async getFilePreview(fileID){
+    getFilePreview(fileID){
         try {
                 return this.bucket.getFilePreview(
                 conf.appwrite_bucket,
-                fileID
+                fileID,
+                0, 500
             )
         } catch (error) {
             console.log("Appwrite service :: Get File Preview fail")

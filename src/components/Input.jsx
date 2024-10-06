@@ -22,7 +22,7 @@ export default React.forwardRef(function Input ({
       type = {type}
       id = {id}
       ref = {ref}
-      className={`p-3 rounded-xl bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
+      className={`p-3 rounded-xl bg-white text-black focus:outline-none focus:drop-shadow-2xl duration-200 w-full ${className}`}
       {...props} />
     </div>
   </>

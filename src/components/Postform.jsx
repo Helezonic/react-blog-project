@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import {Button, Container, Input, Select, RTE} from "./index"
 import {useForm} from "react-hook-form"
 import postServ from "../appwrite/postServ"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useCallback } from "react"
 
 
@@ -13,17 +13,18 @@ export default function PostForm ({post}) {
             title: post?.title || "",
             slug: post?.$id || "",
             content: post?.content || "",
-            status: post?.status || "",
-            //userid?
-            //featuredimage?
+            status: post?.status || ""
+            /* userid? */
+            /* featuredimage? */
         }
     })
 
-    const userData = useSelector((state)=>(state.userData))
+    const {slug} = useParams()
+    const userData = useSelector((state)=>(state.auth.userData))
     const navigate = useNavigate()
 
     const submit = async (data) => {
-        console.log("Data -", data)
+        console.log("Form Data -", data)
         //If an old post exists
         if(post){
             console.log("Edit post")
@@ -44,14 +45,17 @@ export default function PostForm ({post}) {
         }
         //If its a new post
         else {
-            console.log("New Post, ")
+            console.log("Creating New Post")
             const file = data.image[0]? await postServ.uploadFile(data.image[0]) : null;
-            if(file) console.log("File")
-            const newPost = await postServ.createPost({...data, featuredImage: file? file.$id : null ,userId: userData.$id })
+            if(file) console.log("File uploaded", file)
+            const newPost = await postServ.createPost({...data, featuredImage: file? file.$id : null ,userId: userData.userId })
 
             if(newPost){
-                console.log("post created")
+                console.log("Post created", newPost)
                 navigate(`/posts/${newPost.$id}`)
+            }
+            else {
+                console.log("Post failed to create")
             }
         }
     }
@@ -70,6 +74,7 @@ export default function PostForm ({post}) {
     },[])
 
     useEffect(()=>{
+        if(post) console.log("Edit post - ", post)
         //Reduces rerenders while 'onChange'
         //subscription, watch, setValue, value, name, register are part of React Forms
         const subscription = watch((value,{name})=>{
@@ -78,12 +83,11 @@ export default function PostForm ({post}) {
                 setValue("slug", slugTransform(value.title), {shouldValidate: true})
         } )
         return () => {subscription.unsubscribe()}
-    },[watch, slugTransform, setValue])
+    },[watch, slugTransform, setValue,slug])
 
     return (
         <>
-        <Container className="bg-blue-800">
-        <form className=" border-2 border-white rounded-xl p-3" onSubmit={handleSubmit(submit)}>
+        <form className="flex flex-col gap-2 align-middle border-2 border-white rounded-xl p-2" onSubmit={handleSubmit(submit)}>
             <Input
             label = "title"
             type = "text"
@@ -124,7 +128,7 @@ export default function PostForm ({post}) {
             })}
             />
 
-            //If post, appear post image.
+            {/* If post, appear post image. */}
             {post && 
             (
                 <div>
@@ -134,11 +138,10 @@ export default function PostForm ({post}) {
 
             
 
-            <Button type="submit" className="w-1/2 relative left-50% bg-green-300">
+            <Button type="submit" className="bg-green-300">
                 Submit
             </Button>
         </form>
-        </Container>
         </>
     )
 }
