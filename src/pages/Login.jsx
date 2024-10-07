@@ -42,7 +42,7 @@ export default function Login() {
   return !loadState? ( 
     <>
       <div>
-        <Container title="LOGIN">
+        <Container title="LOGIN" className="w-[480px]">
           
           {error && <p className="text-sm font-semibold mb-2 text-red-200 w-fit mx-auto">{error}</p>}
           <form className="flex flex-col gap-2 align-middle p-2" onSubmit={handleSubmit(loginForm)}>

@@ -39,7 +39,7 @@ export default function Header () {
   ]
   return (
     <>
-      <div className="bg-violet-800 flex px-2">
+      <div className="bg-violet-800 flex p-2">
         <nav className=" px-4 flex justify-evenly w-fit mx-auto">
           {navitems.map(page => 
             page.active?

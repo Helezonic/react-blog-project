@@ -13,7 +13,7 @@ export default function Addpost () {
     
     return (
         <>
-        <Container title="ADD POST">
+        <Container title="ADD POST" className="w-[540px]">
             <PostForm/>
         </Container>
             

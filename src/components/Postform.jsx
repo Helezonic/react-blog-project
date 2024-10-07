@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux"
-import {Button, Container, Input, Select, RTE} from "./index"
+import { useDispatch, useSelector } from "react-redux"
+import {Button, Input, Select, RTE} from "./index"
 import {useForm} from "react-hook-form"
 import postServ from "../appwrite/postServ"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useCallback } from "react"
-
+import { loading, notloading } from "../app/loadSlice"
 
 
 export default function PostForm ({post}) {
+
     const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
         defaultValues: {
             title: post?.title || "",
@@ -22,9 +23,11 @@ export default function PostForm ({post}) {
     const {slug} = useParams()
     const userData = useSelector((state)=>(state.auth.userData))
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const submit = async (data) => {
         console.log("Form Data -", data)
+        dispatch(loading())
         //If an old post exists
         if(post){
             console.log("Edit post")
@@ -58,6 +61,7 @@ export default function PostForm ({post}) {
                 console.log("Post failed to create")
             }
         }
+        dispatch(notloading())
     }
 
     const slugTransform = useCallback((value) => {
@@ -89,7 +93,7 @@ export default function PostForm ({post}) {
         <>
         <form className="flex flex-col gap-2 align-middle border-2 border-white rounded-xl p-2" onSubmit={handleSubmit(submit)}>
             <Input
-            label = "title"
+            label = "title*"
             type = "text"
             placeholder = "Enter Title"
             {...register("title", {
@@ -110,17 +114,17 @@ export default function PostForm ({post}) {
             />
 
             <Select
-            label = "status"
+            label = "status*"
             options = {["active","inactive"]}
             {...register("status", {
                 required: true
             })}
             />
 
-            <RTE label="content" name="content" control={control} defaultValues={getValues("content")} />
+            <RTE label="content*" name="content" control={control} defaultValues={getValues("content")} />
 
             <Input 
-            label = "image"
+            label = "image*"
             type = "file"
             accept="image/png, image/jpg, image/gif"
             {...register("image", {

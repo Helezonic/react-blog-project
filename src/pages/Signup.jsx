@@ -44,7 +44,7 @@ export default function Signup () {
   return (
     <> 
       <div>
-        <Container title="SIGN UP">
+        <Container title="SIGN UP" className="w-[480px]">
         
         {error && <p className="text-sm font-semibold mb-2 text-red-200 w-fit mx-auto">{error}</p>}
           <form className="flex flex-col gap-2 align-middle p-2" onSubmit={handleSubmit(signUpForm)}>

@@ -62,7 +62,7 @@ class PostService {
         }
     }
 
-    async getAllPosts(queries = [Query.equal("status", "active")]) {
+    async getAllPosts(queries = [Query.equal("status", "active") , Query.equal("userId",userId) ]) {
         try {
             return await this.databases.listDocuments(
                 conf.appwrite_database,

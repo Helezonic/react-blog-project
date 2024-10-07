@@ -6,14 +6,22 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Addpost from "../pages/Addpost"
 import Allpost from "../pages/Allpost";
+import Editpost from "../pages/Editpost";
 import Button from "./Button";
 import Logout from "./Logout";
 import Select from "./Select";
 import RTE from "./RTE";
 import Post from "./Post";
-import Editpost from "./Editpost";
+import Postcard from "./Postcard";
+import AnimatedPage from "./AnimatedPage";
+import LoaderAnimation from "./LoaderAnimation";
+import Footer from "./Footer";
+import PostForm from "./Postform";
 
 
 
 
-export {Header, Home, Container, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post, Editpost} 
+
+
+
+export {Header, Footer, Home, Container, Postcard, PostForm, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post, Editpost, AnimatedPage, LoaderAnimation} 

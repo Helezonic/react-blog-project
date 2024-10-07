@@ -1,4 +1,4 @@
-import PostForm from "./Postform";
+import PostForm from "../components/Postform";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import postServ from "../appwrite/postServ";
@@ -28,7 +28,7 @@ export default function Editpost () {
 
     return post?(
         <>
-            <Container title="EDIT POST">
+            <Container title="EDIT POST" className="w-[540px]">
                 <PostForm post={post}/>
             </Container>
         </>
