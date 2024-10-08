@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import MainText from "./MainText"
 
 
 
@@ -16,17 +17,9 @@ export default function Home() {
   },[authStatus])
   
   return authStatus? (
-    <>
-      <div className="font-semibold w-fit mx-auto text-xl">
-      Welcome {user}
-      </div>
-    </>
+    <MainText>Welcome {user}</MainText>
   ) 
   : (
-  <>
-    <div className="font-semibold w-fit mx-auto text-xl">
-      Login to view
-    </div>
-  </>
+    <MainText>Login to View</MainText>
   )
 }

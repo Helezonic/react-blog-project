@@ -1,13 +1,17 @@
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link, NavLink } from "react-router-dom"
 import { useSelector } from "react-redux";
 import {Button, Logout} from "./index";
-
+import { useState, useEffect } from "react";
 
 
 
 
 export default function Header () {
+  
+  const userData= useSelector((state)=>state.auth.userData)
   const authStatus = useSelector((state)=>state.auth.status)
+  const [user,setUser] = useState("")
+
   //const navigate = useNavigate()
   const navitems = [ //Only for Navigating to Pages, hence no Logout
     {
@@ -37,21 +41,29 @@ export default function Header () {
     },
     
   ]
+  useEffect(()=>{
+    setUser(userData?.providerUid)
+
+  },[authStatus])
+
   return (
     <>
-      <div className="bg-violet-800 flex p-2">
+      <div className="bg-gradient-to-bl from-violet-600 via-indigo-900 to-violet-700 flex p-2 items-center">
+        {user && <div className="absolute left-3 text-yellow-100 font-mono font-bold bg-black">
+          {user}
+        </div>}
         <nav className=" px-4 flex justify-evenly w-fit mx-auto">
           {navitems.map(page => 
             page.active?
               
-              <Link 
-              key={page.name}
-              to={page.slug} 
-              className="font-bold mx-3 ">
-              <Button className='text-white w-fit active:bg-blue-800'>
-              {page.name}
-              </Button>
-              </Link> 
+              <NavLink 
+                key={page.name}
+                to={page.slug} 
+                className={({isActive}) => `rounded-xl font-bold mx-3 ${isActive? "bg-indigo-950 text-indigo-100" : "bg-transparent text-white"}`}>
+                <Button className='w-fit active:bg-blue-800'>
+                {page.name}
+                </Button>
+              </NavLink> 
               
               :
               null

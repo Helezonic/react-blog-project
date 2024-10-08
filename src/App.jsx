@@ -36,10 +36,10 @@ function App() {
   return !isLoading? (
     <>
     
-      <div className=' fixed w-full top-0 z-10'>
+      <div className=' fixed w-full top-0 z-10 '>
         <Header/>
       </div>
-      <div className='flex flex-col min-h-screen w-full bg-indigo-300'>
+      <div className='flex flex-col min-h-screen w-full bg-gradient-to-r from-violet-950 via-black to-violet-950 '>
         <div className='flex-grow py-24  '>
           {loadState? <LoaderAnimation/> : <Outlet/>  }
         </div>

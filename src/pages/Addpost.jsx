@@ -5,11 +5,11 @@ import PostForm from "../components/Postform";
 import { useDispatch } from "react-redux";
 
 export default function Addpost () {
-    const dispatch = useDispatch()
+   /*  const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(notloading())
         console.log("Add post")
-    },[])
+    },[]) */
     
     return (
         <>

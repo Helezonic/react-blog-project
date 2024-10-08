@@ -1,4 +1,4 @@
-import { Account, Client, Databases, ID, Storage } from "appwrite";
+import { Account, Client, Databases, ID, Storage, Query } from "appwrite";
 import { conf } from "../conf/conf";
 
 class PostService {
@@ -62,12 +62,18 @@ class PostService {
         }
     }
 
-    async getAllPosts(queries = [Query.equal("status", "active") , Query.equal("userId",userId) ]) {
+    async getAllPosts({userId}) {
         try {
+            console.log(userId)
             return await this.databases.listDocuments(
                 conf.appwrite_database,
                 conf.appwrite_collection,
-                queries
+                [
+                    Query.equal("status", "active"),
+                    Query.equal("userId", userId)
+
+                ]
+
             )
         } catch (error) {
             console.log("Appwrite service :: List Documents :: error", error)
