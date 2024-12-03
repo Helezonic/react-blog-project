@@ -1,10 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Input, Button } from "../components/index";
+import { Container, Input, Button, LoaderAnimation } from "../components/index";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { authserv } from "../appwrite/authServ";
 import { login } from "../app/authSlice";
-import LoaderAnimation from "../components/LoaderAnimation";
 import { useDispatch } from "react-redux";
 
 export default function Login() {

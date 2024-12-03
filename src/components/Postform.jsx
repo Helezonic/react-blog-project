@@ -3,7 +3,7 @@ import {Button, Input, Select, RTE, LoaderAnimation} from "./index"
 import {useForm} from "react-hook-form"
 import postServ from "../appwrite/postServ"
 import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useCallback, useState } from "react"
+import { useEffect, useCallback } from "react"
 import { load, notLoad, update } from "../app/documentSlice"
 
 

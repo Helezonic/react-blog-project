@@ -4,7 +4,6 @@ import { conf } from "../conf/conf"
 
 
 
-
 export default function RTE({label, name, control, defaultValue=""}) {
     return (
         <>

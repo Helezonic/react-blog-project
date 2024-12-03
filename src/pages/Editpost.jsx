@@ -33,7 +33,7 @@ export default function Editpost () {
     return !isLoading? (
         post && (
         <>
-            <Container title="EDIT POST" className="sm:w-[540px] mx-4 sm:mx-auto">
+            <Container title="EDIT POST" className="sm:w-[540px] mx-6 sm:mx-auto">
                 <PostForm post={post}/>
             </Container>
         </>

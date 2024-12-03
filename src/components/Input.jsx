@@ -1,9 +1,8 @@
-import React, { useEffect, useId } from "react"
+import React, { useId } from "react"
 
 
 export default React.forwardRef(function Input ({label,type,className,placeholder,postData,...props}, ref) {
   const id = useId()
-  
   
  
   return(

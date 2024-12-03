@@ -1,4 +1,4 @@
-import { useNavigate, Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux";
 import {Button, Logout} from "./index";
 import { useState, useEffect } from "react";
@@ -48,32 +48,33 @@ export default function Header () {
 
   return (
     <>
-      <div className="bg-gradient-to-bl from-violet-600 via-indigo-900 to-violet-700 flex p-2 items-center">
-        {user && <div className="absolute left-3 text-yellow-100 font-mono font-bold bg-black">
-          {user}
+      <div className="relative bg-gradient-to-bl from-indigo-600 via-indigo-900 to-indigo-700 md:flex-row flex-col flex p-2 items-center  ">
+        {user && <div className=" md:absolute left-3 text-yellow-100 font-mono font-bold bg-indigo-950 md:text-lg text:xs md:w-fit w-full text-center md:mb-0 mb-2 ">
+          Welcome {user} !
         </div>}
-        <nav className=" px-4 flex justify-evenly w-fit mx-auto">
-          {navitems.map(page => 
-            page.active?
-              
-              <NavLink 
-                key={page.name}
-                to={page.slug} 
-                className={({isActive}) => `rounded-xl font-bold mx-3 ${isActive? "bg-indigo-950 text-indigo-100" : "bg-transparent text-white"}`}>
-                <Button className='w-fit active:bg-blue-800'>
-                {page.name}
-                </Button>
-              </NavLink> 
-              
-              :
-              null
-              
-          )}
-        </nav>
-        <div className="absolute right-3">
-        <Logout/>
+        <div className="flex md:justify-center justify-between w-full">
+          <nav className=" flex justify-evenly">
+            {navitems.map(page => 
+              page.active?
+                
+                <NavLink 
+                  key={page.name}
+                  to={page.slug} 
+                  className={({isActive}) => `rounded-xl font-bold mx-3 ${isActive? "bg-indigo-950 text-indigo-100" : "bg-transparent text-white"}`}>
+                  <Button className='w-fit active:bg-blue-800'>
+                  {page.name}
+                  </Button>
+                </NavLink> 
+                
+                :
+                null
+                
+            )}
+          </nav>
+          <div className="md:absolute right-3 top-2">
+            <Logout/>
+          </div>
         </div>
-        
       </div>
 
     </>

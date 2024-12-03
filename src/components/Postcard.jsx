@@ -6,7 +6,7 @@ import postServ from '../appwrite/postServ'
 
 function Postcard({className,...post}) {
   return (
-    <div key={post?.$id} className={`w-[150px] relative h-[200px] rounded-xl border-y-0 m-1 bg-violet-400 drop-shadow-none overflow-hidden hover: hover:rounded-sm hover:border-y-2 hover:-translate-y-1 hover:drop-shadow-[0px_5px_0px_rgba(0,50,50,0.7)] hover:border-violet-200 duration-100 outline-4 outline-gray-900 outline group ${className}`}>
+    <div key={post?.$id} className={`w-[150px] relative h-[200px] rounded-xl border-y-0 m-1 bg-indigo-400 drop-shadow-none overflow-hidden hover: hover:rounded-sm hover:border-y-2 hover:-translate-y-1 hover:drop-shadow-[0px_5px_0px_rgba(0,50,50,0.7)] hover:border-indigo-200 duration-100 outline-4 outline-gray-900 outline group ${className}`}>
       <Link to={`/posts/${post.$id}`}  >
           <div className='w-full h-3/4 group'>
               <img src={postServ.getFilePreview(post.featuredImage)} className="  overflow-hidden"/>

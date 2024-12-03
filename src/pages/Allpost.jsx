@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Container, LoaderAnimation, Postcard } from "../components"
+import { Container, LoaderAnimation, Postcard } from "../components/index.js"
 import MainText from "../components/MainText"
 import { load, notLoad } from "../app/documentSlice"
 

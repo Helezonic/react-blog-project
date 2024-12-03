@@ -1,8 +1,8 @@
 
 import { authserv } from "../appwrite/authServ";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { login, logout } from "../app/authSlice";
+import { login} from "../app/authSlice";
 import { Container, Button, Input} from "../components/index"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

@@ -23,13 +23,16 @@ A Full Stack React Blog CRUD Application with Appwrite as Backend Service
     - Update [Edit Post]
     - Delete [Delete Post]
  - Querying
-    - View posts of logged in user, by 'status' as index
+    - Toggle Active and Inactive Posts
     - Search by keywords [Addable]
- - Paginaton
+ - Paginaton?
 ---
 - [x] Responsive Website
 - [x] Dark Mode
+- [x] Lazy Loading
 - [x] Show Date and sort reverse?
+- [x] Toggle Footer to being Fixed at bottom.
+- [x] Add popups for successful edit, add, delete, login, logout
 - [x] Routing - Config Based Routing
 - [x] Page Protection - Prohibit access to certain pages for Logged in User and Logged Out User. 
 - [x] Status Toggle

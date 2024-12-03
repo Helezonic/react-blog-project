@@ -16,8 +16,8 @@ const router = createBrowserRouter (
     <Route path ='signup' element={<Signup/>}/>
     <Route path ='allpost' element={<Allpost/>}/>
     <Route path ='addpost' element={<Addpost/>}/>
-    <Route path ='posts/:slug' element={<Post/>} /> {/* Navigate from Postform or View from Postcard */}
-    <Route path ='editpost/:slug' element={<Editpost/>}  /> {/* Navigate from Post */}
+    <Route path ='posts/:slug' element={<Post/>} errorElement={<Errorpage/>}/> {/* Navigate from Postform or View from Postcard */}
+    <Route path ='editpost/:slug' element={<Editpost/>} errorElement={<Errorpage/>} /> {/* Navigate from Post */}
   </Route>
   )
  )

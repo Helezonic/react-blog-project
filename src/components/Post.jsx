@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import postServ from "../appwrite/postServ";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import {Container, Button} from "./index.js";
+import {Container, Button, LoaderAnimation, AnimatedPage} from "./index.js";
 import parse from "html-react-parser"
-import {LoaderAnimation, AnimatedPage } from "./index.js";
 import Errorpage from "../pages/Errorpage.jsx";
+import { update } from "../app/documentSlice.js";
+import { useDispatch } from "react-redux";
+
 
 export default function Post () {  
     const [post, setPost] = useState("")
@@ -12,6 +14,7 @@ export default function Post () {
     const navigate = useNavigate()
     const [imageSource, setImageSource] = useState()
     const [isLoading, setLoading] = useState(true)
+    const dispatch = useDispatch()
     
     useEffect(()=> {
         setLoading(true)
@@ -38,6 +41,7 @@ export default function Post () {
         }).finally(()=>{
             navigate('/allpost')
             setLoading(false)
+            dispatch(update())
         })
     }
      
@@ -50,7 +54,7 @@ export default function Post () {
                         </div>
                         
                         <div className="md:w-2/5 flex flex-col justify-between gap-2">
-                            <div className="w-full flex flex-col rounded-xl bg-violet-500 p-2 flex-grow ">
+                            <div className="w-full flex flex-col rounded-xl bg-indigo-500 p-2 flex-grow ">
                             <AnimatedPage>
                                 <div className="w-fit bg-white px-2 rounded-xl font-mono md:text-3xl sm:text-2xl text-xl uppercase sm:mb-2">{post.title}</div>
                             

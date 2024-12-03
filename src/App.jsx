@@ -1,17 +1,15 @@
 
-//import './App.css'
 import { useEffect, useState } from 'react'
 import { login, logout } from './app/authSlice'
+import { addPosts, clearDoc, load, notLoad } from "./app/documentSlice"
 import { authserv } from './appwrite/authServ'
 import { Outlet } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
-import LoaderAnimation from './components/LoaderAnimation'
-import { Footer, Header } from './components/index.js'
+import { Footer, Header, LoaderAnimation } from './components/index.js'
 import postServ from "./appwrite/postServ"
-import { addPosts, clearDoc, load, notLoad } from "./app/documentSlice"
+
 
 function App() {
-  const [isAppLoading,setAppLoading] = useState(false)
   const isLoading = useSelector((state) => state.document.loading)
   const dispatch = useDispatch()
   const authStatus = useSelector((state)=>state.auth.status)
@@ -20,6 +18,7 @@ function App() {
   const update = useSelector((state)=>state.document.updated)
   const [appRender,setAppRender] = useState(0)
   const [rerenders, setRerenders] = useState(0)
+  const [isAppLoading,setAppLoading] = useState(false)
 
   //LOADING STATE :  To check whether session is logged in or not
   //GET CURRENT SESSION - FROM REDUX - NOT APPWRITE
@@ -62,10 +61,7 @@ function App() {
       if(postsData) {
         console.log(postsData)
         dispatch(addPosts(postsData.documents))
-        setTotal(postsData.total)
-      }})
-      .catch(error => 
-        console.log("Fetch Post Data Error")
+      }}
       ).finally(()=>dispatch(notLoad()))
     } else {
       dispatch(notLoad())
@@ -80,11 +76,11 @@ function App() {
         <Header/>
       </div>
       <div className='flex flex-col min-h-screen w-full bg-gradient-to-r from-violet-950 via-black to-violet-950 '>
-        <div className='flex-grow py-24  '>
+        <div className='flex-grow py-24 md:mt-3 mt-10 transition-all duration-100'>
           {isLoading? <LoaderAnimation/> : <Outlet/>  }
         </div>
         <div className='w-full text-white mx-auto'>
-          <p>AppRender - Sessioncheck {appRender} <br/> GetPostsRender {rerenders}</p>
+          <p className='p-3'>AppRender - Sessioncheck {appRender} <br/> GetPostsRender {rerenders}</p>
           <Footer/>
         </div>  
       </div>
