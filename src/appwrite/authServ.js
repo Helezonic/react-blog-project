@@ -12,7 +12,7 @@ class AuthService{
 
   createAccount = async({email, password}) => {
     try {
-      console.log("Inside creation", email, password)
+      console.log("Inside creation Appwrite Service", email, password)
       const create = await this.account.create(ID.unique(), email, password)
       if (create) {
         console.log(create, "ACCOUNT CREATION RETURN")
@@ -25,7 +25,7 @@ class AuthService{
 
   login = async({email, password}) => {
     try {
-      console.log("Inside Login", email, password)
+      console.log("Inside Login Appwrite Service")
       const session = await this.account.createEmailPasswordSession(email,password)
       if (session) console.log("logged in") 
       return session
@@ -38,8 +38,8 @@ class AuthService{
     try {
       return await this.account.getSession("current")
     } catch (error) {
+      console.log("Fetch User Details Error")
       throw error
-      console.log("error here")
     }
   }
 

@@ -7,12 +7,13 @@ function Select ({label, options, className, ...props}, ref) {
     return (
         <>
             <div className="mb-3">
-                {label && <label htmlFor={id} className="font-mono font-semibold my-2 text-xl text-yellow-300">{label}</label>}
+                {label && <label htmlFor={id} className="font-mono font-semibold my-2 md:text-xl text-lg text-yellow-300">{label}</label>}
                 <select
                 {...props}
                 id = {id}
                 ref={ref}
-                className={`w-full p-3 rounded-xl bg-red text-black ${className}`}
+                
+                className={`w-full md:py-3 px-3 py-2 rounded-xl bg-red text-black ${className}`}
                 >
                     {options?.map((option) => (
                         <option key={option} value={option}>

@@ -1,38 +1,44 @@
-import PostForm from "../components/Postform";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import postServ from "../appwrite/postServ";
-import { useDispatch } from "react-redux";
-import { loading, notloading } from "../app/loadSlice";
+import { Container, LoaderAnimation, PostForm } from "../components/index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { load, notLoad } from "../app/documentSlice.js";
 
 
 export default function Editpost () {
     const [post, setPost] = useState(null)
     const {slug} = useParams()
-    const navigate = useNavigate()
+    /* const [isLoading,setLoading] = useState(false) */
+    const isLoading = useSelector((state) => state.document.loading)
     const dispatch = useDispatch()
 
-    useEffect(()=> {
-        if (slug) {
-            dispatch(loading())
-            postServ.getPost(slug).then((post) => {
-                if(post){
-                    console.log("Post fetched details-", post)
-                    setPost(post)
-                    dispatch(notloading())
-                }
-            })
-        } else
-        navigate("/allpost")
-    }, [slug])
 
-    return post?(
+
+    useEffect(()=> {
+        dispatch(load())
+        postServ.getPost(slug).then((post) => {
+            if(post){
+                setPost(post)
+            }
+        })}, [])
+
+    useEffect(()=>{
+        dispatch(notLoad())
+    },[post])
+
+
+
+
+    return !isLoading? (
+        post && (
         <>
-            <Container title="EDIT POST" className="w-[540px]">
+            <Container title="EDIT POST" className="sm:w-[540px] mx-4 sm:mx-auto">
                 <PostForm post={post}/>
             </Container>
         </>
-    ) : 
-    
-    <h1>Such post doesn't exist</h1>
+    )
+    ) : (
+        <LoaderAnimation/>
+    )
 }

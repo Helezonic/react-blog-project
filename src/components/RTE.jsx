@@ -9,7 +9,7 @@ export default function RTE({label, name, control, defaultValue=""}) {
     return (
         <>
             <div className="mb-3"> 
-                {label && <label className='font-mono font-semibold my-2 text-xl text-yellow-300' htmlFor={label}>{label}</label>}
+                {label && <label className='font-mono font-semibold md:my-2 my-1 md:text-xl text-lg text-yellow-300' htmlFor={label}>{label}</label>}
                 
                 <Controller
                 name = {name || "content"}
@@ -21,7 +21,7 @@ export default function RTE({label, name, control, defaultValue=""}) {
                     init={{
                         initialValue: defaultValue,
                         height: 300,
-                        menubar: true,
+                        menubar: false,
                         plugins: [
                             "image",
                             "advlist",

@@ -3,53 +3,49 @@ import { Container, Input, Button } from "../components/index";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { authserv } from "../appwrite/authServ";
-import { useDispatch, useSelector } from "react-redux";
 import { login } from "../app/authSlice";
 import LoaderAnimation from "../components/LoaderAnimation";
-import { loading, notloading } from "../app/loadSlice";
-
+import { useDispatch } from "react-redux";
 
 export default function Login() {
   const [error,setError] = useState("")
   const {register, handleSubmit} = useForm()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  /* const [isLoading, setLoading]  =useState(false) */
-  const loadState = useSelector((state) => state.load.status)
-  
-  
-  
+  const [isLoading, setLoading] = useState(false)  
+  const dispatch = useDispatch()
 
   const loginForm = async(data) => {
     try {
       setError("")
-      console.log(data)
-      dispatch(loading())
+      setLoading(true)
+      console.log("Login Form Data", data)
       const sess = await authserv.login(data)
       if (sess) {
+        console.log("Session Started")
         const userData = await authserv.getUser()
         dispatch(login(userData))
-        console.log("Session Started")
+        console.log("User Data dispatched to Redux")
         navigate("/")
-        dispatch(notloading())
       }
     } catch (error) {
-      dispatch(notloading())
       setError(error.message)
+    } finally {
+      setLoading(false)
     }
   }
   
-  return !loadState? ( 
+  return !isLoading? ( 
     <>
       <div>
-        <Container title="LOGIN" className="w-[480px]">
+        <Container title="LOGIN" className="sm:w-[400px] sm:min-h-[350px] w-[300px] min-h-[350px] ">
           
-          {error && <p className="text-sm font-semibold mb-2 text-red-200 w-fit mx-auto">{error}</p>}
-          <form className="flex flex-col gap-2 align-middle p-2" onSubmit={handleSubmit(loginForm)}>
+          {error && <p className="text-sm font-semibold sm:mb-2 mb-1 text-red-200 w-fit mx-auto">{error}</p>}
+          <form className="flex flex-col sm:gap-2 gap-1 align-middle p-2" onSubmit={handleSubmit(loginForm)}>
             <Input
             label="Email:"
             type= "email"
             placeholder="email"
+            
            {...register("email", {required: true})}
            />
             
@@ -57,6 +53,7 @@ export default function Login() {
             label="Password:"
             type="password"
             placeholder="password"
+            autoComplete = 'true'
             {...register(
               "password",
               {required : true} 
@@ -65,9 +62,9 @@ export default function Login() {
             
             <Button type="submit" className='bg-green-300' >Login</Button>
           </form>
-          <p className="text-white w-fit mx-auto my-2">Don't have an account? Create one - 
+          <p className="text-white w-fit mx-auto sm:my-2 my-1 sm:text-md text-sm">Don't have an account? Create one - 
             <Link to='/signup'
-            className="font-medium transition-all hover:underline hover:text-yellow-400">
+            className="font-medium transition-all hover:underline hover:text-yellow-400 ml-1">
              Sign Up</Link>
           </p>
         </Container>

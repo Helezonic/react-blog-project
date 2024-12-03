@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Container from "./Container";
-import Home from "./Home"
+import Home from "../pages/Home"
 import Input from "./Input";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";

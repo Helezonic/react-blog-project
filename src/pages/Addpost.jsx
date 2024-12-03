@@ -1,19 +1,10 @@
-import { useEffect } from "react";
-import { notloading } from "../app/loadSlice";
-import { Container } from "../components";
-import PostForm from "../components/Postform";
-import { useDispatch } from "react-redux";
+import { Container, PostForm } from "../components/index.js";
 
 export default function Addpost () {
-   /*  const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(notloading())
-        console.log("Add post")
-    },[]) */
     
     return (
         <>
-        <Container title="ADD POST" className="w-[540px]">
+        <Container title="ADD POST" className="sm:w-[540px] mx-4 sm:mx-auto">
             <PostForm/>
         </Container>
             

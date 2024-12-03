@@ -58,20 +58,18 @@ class PostService {
                 slug
             )
         } catch (error) {
-            console.log("Appwrite service :: getPost :: error", error)
+            console.log("Appwrite service :: getPost :: error")
+            return false;
         }
     }
 
-    async getAllPosts({userId}) {
+    async getAllPosts(userId) {
         try {
-            console.log(userId)
             return await this.databases.listDocuments(
                 conf.appwrite_database,
                 conf.appwrite_collection,
                 [
-                    Query.equal("status", "active"),
                     Query.equal("userId", userId)
-
                 ]
 
             )

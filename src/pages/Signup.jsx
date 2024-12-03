@@ -17,13 +17,6 @@ export default function Signup () {
   const signUpForm = async(data) => {
     try {
         setError("")
-     /*  //Check whether logged in or session exists
-      console.log(status, "check status") 
-      if(status === true) dispatch(logout())
-      if(await authserv.getUser()){
-        const logoutsess = await authserv.logout()
-        console.log(logoutsess, "DELETE SESSION RETURN")
-      } */
     
       //Then create an account and start a session
       const sess = await authserv.createAccount(data)
@@ -44,13 +37,14 @@ export default function Signup () {
   return (
     <> 
       <div>
-        <Container title="SIGN UP" className="w-[480px]">
+        <Container title="SIGN UP" className="sm:w-[400px] sm:h-[350px] w-[300px] max-h-[350px] ">
         
         {error && <p className="text-sm font-semibold mb-2 text-red-200 w-fit mx-auto">{error}</p>}
           <form className="flex flex-col gap-2 align-middle p-2" onSubmit={handleSubmit(signUpForm)}>
             <Input
             label="Email:"
             type='email'
+            
             placeholder= 'Enter email'
             {...register(
               "email",
@@ -69,6 +63,7 @@ export default function Signup () {
             label="Password:"
             type='password'
             placeholder= 'Enter password'
+            autoComplete
             {...register(
               "password",
               {required : true} 

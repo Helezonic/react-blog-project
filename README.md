@@ -23,9 +23,20 @@ A Full Stack React Blog CRUD Application with Appwrite as Backend Service
     - Update [Edit Post]
     - Delete [Delete Post]
  - Querying
-    - View all posts of logged in user.
-    - Search by keywords [/Addable]
-- Paginaton
+    - View posts of logged in user, by 'status' as index
+    - Search by keywords [Addable]
+ - Paginaton
+---
+- [x] Responsive Website
+- [x] Dark Mode
+- [x] Show Date and sort reverse?
+- [x] Routing - Config Based Routing
+- [x] Page Protection - Prohibit access to certain pages for Logged in User and Logged Out User. 
+- [x] Status Toggle
+- [x] Preload Editor 
+- [x] No slug, wrong slug - error cases
+- [x] Loading animation during AJAX events
+- [x] Session checking before application launch - FIX THIS - If no session, then getUser throws error due to 'no scope for guest role'
 
 ## Libraries Used
 - Appwrite [For Backend Services - Auth, Database, Bucket]
@@ -35,3 +46,4 @@ A Full Stack React Blog CRUD Application with Appwrite as Backend Service
 - React Hook Form [For creating post]
 - React Router [For subrouting and navigations]
 - TailwindCSS, PostCSS [For CSS]
+- Framer Motion [For page transitions]
