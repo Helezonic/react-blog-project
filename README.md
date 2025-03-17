@@ -12,34 +12,41 @@ Currently, two official plugins are available:
 
 A Full Stack React Blog CRUD Application with Appwrite as Backend Service
 
+ ## Sample Login Dataset
+ - Email : shuaibaa@gmail.com
+ - Password : abcdefgh
+
  ## Features
 
- - User Authorization with Name, Email, Password 
+ - User Authentication with Name, Email, Password 
     - SignUp [Create User]
     - Login [Session start]
+    - < Credential Update [Addable] >
  - Post with Title, Content, Image
     - Create [Add Post]
     - Read [View Post]
     - Update [Edit Post]
     - Delete [Delete Post]
  - Querying
-    - Toggle Active and Inactive Posts
-    - Search by keywords [Addable]
- - Paginaton?
+    - Toggle by Status - Active and Inactive Posts
+    - < Search Field - search by keywords [Addable] >
+ - Paginaton
+    - < Limit posts to 12 in a single page [Addable] >   
 ---
 - [x] Responsive Website
-- [x] Dark Mode
-- [x] Lazy Loading
-- [x] Show Date and sort reverse?
-- [x] Toggle Footer to being Fixed at bottom.
-- [x] Add popups for successful edit, add, delete, login, logout
+- [x] Minimal page transitions
+- [] Dark Mode
+- [] Lazy Loading Images
+- [] Show created and updated date and sort by date
+- [x] Toggle Footer to being Fixed at bottom of Viewport.
+- [] Add popups for successful edit, add, delete, login, logout
 - [x] Routing - Config Based Routing
-- [x] Page Protection - Prohibit access to certain pages for Logged in User and Logged Out User. 
+- [] Page Protection/ Authorization - RBAC - Role Based Access Control
 - [x] Status Toggle
-- [x] Preload Editor 
+- [] Preload Editor before page loads
 - [x] No slug, wrong slug - error cases
-- [x] Loading animation during AJAX events
-- [x] Session checking before application launch - FIX THIS - If no session, then getUser throws error due to 'no scope for guest role'
+- [x] Loading animation during asynchronous events
+- [x] Session checking before application launch 
 
 ## Libraries Used
 - Appwrite [For Backend Services - Auth, Database, Bucket]

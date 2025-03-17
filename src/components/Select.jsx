@@ -7,7 +7,7 @@ function Select ({label, options, className, ...props}, ref) {
     return (
         <>
             <div className="mb-3">
-                {label && <label htmlFor={id} className="font-mono font-semibold my-2 md:text-xl text-lg text-yellow-300">{label}</label>}
+                {label && <label htmlFor={id} className="font-mono font-semibold my-2 md:text-lg text-sm text-yellow-300">{label}</label>}
                 <select
                 {...props}
                 id = {id}

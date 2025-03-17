@@ -50,9 +50,11 @@ export default function Allpost () {
                 </div>
                 <div className="flex md:gap-3 gap-2 mt-1 flex-wrap justify-between md:justify-normal">
                     { posts?.length? ( posts.map((post) => (
+                        //Active post card
                         (post.status == 'active' &&
                         <Postcard {...post} />
                         ) ||
+                        //Inactive post card
                         (inactiveCheck? 
                             (post.status == 'inactive' &&
                             <Postcard {...post} className={`

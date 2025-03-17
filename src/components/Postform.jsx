@@ -7,14 +7,14 @@ import { useEffect, useCallback } from "react"
 import { load, notLoad, update } from "../app/documentSlice"
 
 
-export default function PostForm ({post}) {
+export default function PostForm ({oldpost}) {
 
     const {register, handleSubmit, watch, setValue, formState :{errors}, control, getValues} = useForm({
         defaultValues: {
-            title: post?.title || "",
-            slug: post?.$id || "",
-            content: post?.content || "",
-            status: post?.status || "active"
+            title: oldpost?.title || "",
+            slug: oldpost?.$id || "",
+            content: oldpost?.content || "",
+            status: oldpost?.status || "active"
             /* userid? */
             /* featuredimage? */
         }
@@ -29,30 +29,51 @@ export default function PostForm ({post}) {
 
     /* FORM SUBMIT */
     const submit = async (data) => {
-        console.log("Form Data -", data)
+        console.log("Form Data -", data) //Will have title, slug, status, content, image.
         dispatch(load())
         try {
             //If an old post exists
-            if(post){
+            if(oldpost){ //Will have title, content, status, featuredImage, userId, $id(slug)
+                let newPost = null
+
                 console.log("Update post")
+                console.log("Old slug - ", oldpost.$id, "New Slug - ", data.slug)
+
                 //Upload file to get image link
                 const file = data.image[0]? await postServ.uploadFile(data.image[0]) : null;
     
                 //Delete older file if there is a new file upload
                 if(file) {
-                await postServ.deleteFile(post.featuredImage)
+                await postServ.deleteFile(oldpost.featuredImage)
                 console.log("New file uploaded, old file deleted", file)
                 }
     
-                //Create a new post by uploading
-                const newPost = await postServ.updatePost(post.$id,{...data,featuredImage: file? file.$id : post.featuredImage})
                 
+                //If no title changes, slug remains same, hence direct content update.
+                if(oldpost.$id === data.slug){
+                    newPost = await postServ.updatePost(oldpost.$id,{
+                        ...data,
+                        featuredImage: file? file.$id : oldpost.featuredImage
+                    })
+                } 
+                //If there is a title change, slug changes and hence document Id has to be deleted for new slug
+                else {
+                    newPost = await postServ.createPost({
+                        ...data,
+                        featuredImage: file? file.$id : oldpost.featuredImage ,
+                        userId: userData.userId 
+                    })
+                    newPost? await postServ.deletePost(oldpost.$id) : "Slug Update Creation failed"
+                }
+
                 //Navigate
                 if(newPost){
-                    console.log("post edited and updated")
+                    console.log("post edited and updated", newPost)
                     navigate(`/posts/${newPost.$id}`)
                 }
             }
+
+
             //If its a new post
             else {
                 console.log("Creating New Post")
@@ -72,7 +93,7 @@ export default function PostForm ({post}) {
             console.log(error)
         } finally {
             dispatch(notLoad())
-            dispatch(update())
+            dispatch(update()) // Everytime Post is added, updated, All Posts page should rerender.
         }
     }
 
@@ -92,7 +113,7 @@ export default function PostForm ({post}) {
 
     /* FORM SUBSCRIPTION */
     useEffect(()=>{
-        if(post) console.log("PostData recieved for editing in Postform")
+        if(oldpost) console.log("PostData recieved for editing in Postform")
         //Reduces rerenders while 'onChange'
         //subscription, watch, setValue, value, name, register are part of React Forms
         
@@ -153,10 +174,10 @@ export default function PostForm ({post}) {
                     label = "image*"
                     type = "file"
                     accept="image/png, image/jpg, image/gif"
-                    postData= {post? true:false}
+                    postData= {oldpost? true:false}
                     {...register("image", {
                         required : {
-                            value : !post,
+                            value : !oldpost,
                             message : "This field is incomplete. Please choose a file"
                         }
                     })}
@@ -165,17 +186,17 @@ export default function PostForm ({post}) {
             </div>
 
             {/* If post, appear post image. */}
-            {post && 
+            {oldpost && 
             (
                 <div className="mb-5">
-                    <img src={postServ.getFilePreview(post.featuredImage)} alt={post.title} width="60%" className="mx-auto"/>
+                    <img src={postServ.getFilePreview(oldpost.featuredImage)} alt={oldpost.title} width="60%" className="mx-auto"/>
                 </div>
             )}
 
             
 
             <Button type="submit" className="bg-green-300 mt-2">
-                {post? "Update" : "Submit"}
+                {oldpost? "Update" : "Submit"}
             </Button>
         </form>
         </>

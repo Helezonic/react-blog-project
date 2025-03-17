@@ -3,29 +3,26 @@ import { authserv } from "../appwrite/authServ"
 import { logout } from "../app/authSlice"
 import { useNavigate } from "react-router-dom"
 import { Button, LoaderAnimation } from "./index.js"
-import { useState } from "react"
+import { load, notLoad } from "../app/documentSlice"
 
 export default function Logout () {
     const authStatus = useSelector((state)=>state.auth.status)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [isLoading,setLoading] = useState(false)
 
     const logoutHandler = () => {
-        setLoading(true)
+        dispatch(load())
         authserv.logout().then(() => {
             dispatch(logout())
-            setLoading(false)
+            dispatch(notLoad())
             console.log("Logged out" )
             navigate("/")
     })
     }
-    return !isLoading? ( 
-        authStatus && (
+    return authStatus && (
         <>
          <Button className='bg-red-500 text-white w-fit'
          onClick={logoutHandler}>Log Out</Button>
         </>
     ) 
-) : (<LoaderAnimation/>)
 }

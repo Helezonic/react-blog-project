@@ -17,6 +17,7 @@ export default function Editpost () {
 
     useEffect(()=> {
         dispatch(load())
+        console.log("Get post", slug)
         postServ.getPost(slug).then((post) => {
             if(post){
                 setPost(post)
@@ -34,7 +35,7 @@ export default function Editpost () {
         post && (
         <>
             <Container title="EDIT POST" className="sm:w-[540px] mx-6 sm:mx-auto">
-                <PostForm post={post}/>
+                <PostForm oldpost={post}/>
             </Container>
         </>
     )

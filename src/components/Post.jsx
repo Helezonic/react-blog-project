@@ -27,6 +27,8 @@ export default function Post () {
             } else {
                 throw new Error ("Falsy Data")
             }
+        }).catch((error) =>{
+            console.log("Post Fetch Error", slug)
         }).finally(()=>{
             setLoading(false)
         })
@@ -50,13 +52,13 @@ export default function Post () {
             <Container title="VIEW POST" className="xl:w-[1200px] md:w-[700px] w-5/6 ">
                     <div className="w-full md:flex gap-2 ">
                         <div className="md:w-3/5 w-3/4 my-2 md:my-0 mx-auto">
-                            <img src={imageSource} alt={post.title} className="rounded-xl mx-auto xl:w-3/4"/>
+                            <img src={imageSource} alt={post.title} className="rounded-xl mx-auto xl:w-3/4" loading="lazy"/>
                         </div>
                         
                         <div className="md:w-2/5 flex flex-col justify-between gap-2">
-                            <div className="w-full flex flex-col rounded-xl bg-indigo-500 p-2 flex-grow ">
+                            <div className="w-full flex flex-col rounded-xl dark:bg-indigo-500 bg-indigo-400 p-2 flex-grow ">
                             <AnimatedPage>
-                                <div className="w-fit bg-white px-2 rounded-xl font-mono md:text-3xl sm:text-2xl text-xl uppercase sm:mb-2">{post.title}</div>
+                                <div className="w-fit dark:bg-white bg-black px-2 rounded-xl font-mono md:text-3xl sm:text-2xl text-xl uppercase sm:mb-2 text-white dark:text-black">{post.title}</div>
                             
                                 <div className="browser-css w-full rounded-xl p-2 text-white">
                                     {parse(post.content)}

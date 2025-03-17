@@ -58,8 +58,8 @@ class PostService {
                 slug
             )
         } catch (error) {
-            console.log("Appwrite service :: getPost :: error")
-            return false;
+            console.log("Appwrite service :: getPost :: error", slug)
+            throw error;
         }
     }
 

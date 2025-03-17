@@ -10,7 +10,7 @@ export default React.forwardRef(function Input ({label,type,className,placeholde
   <div className="mb-1">  
       <label 
       htmlFor={id}
-      className="font-mono font-semibold my-2 md:text-xl text-lg text-yellow-300"
+      className="font-mono font-semibold my-2 md:text-lg text-sm text-yellow-300 "
       >{label}</label>
 
       <input
@@ -19,7 +19,7 @@ export default React.forwardRef(function Input ({label,type,className,placeholde
       id = {id}
       ref = {ref}
       autoComplete="true"
-      className={`md:py-3 px-3 py-2 rounded-xl border-2 border-black bg-slate-300 focus:bg-white text-black focus:outline-none focus:drop-shadow-2xl duration-200 w-full ${className}`}
+      className={`md:py-3 px-3 py-2 rounded-xl border-2 dark:border-black border-bg-slate-500 bg-slate-300 focus:bg-white text-black focus:outline-none focus:drop-shadow-2xl duration-200 w-full ${className}`}
       {...props} />
 
       

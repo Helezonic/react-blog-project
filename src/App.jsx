@@ -20,30 +20,32 @@ function App() {
   const [rerenders, setRerenders] = useState(0)
   const [isAppLoading,setAppLoading] = useState(false)
 
+
+  
   //LOADING STATE :  To check whether session is logged in or not
   //GET CURRENT SESSION - FROM REDUX - NOT APPWRITE
   
     const sessionCheck = async () => {
       setAppLoading(true)
       setAppRender(value=>value+1)
-      console.log("Loading session check")
+      console.log("1. Loading session check", "App Render:", appRender)
       try {
-        const userData = await authserv.getUser()
-        if(userData) {
-          dispatch(login(userData))
-          console.log("Session running")
+        const userDataFetch = await authserv.getUser()
+        if(userDataFetch) {
+          dispatch(login(userDataFetch))
+          console.log("1. APPWRITE: Session running", userDataFetch, "-AppRender:", appRender)
         } else {
-          console.log("No session running")
+          console.log("1. APPWRITE: No session running", "-AppRender:", appRender)
           dispatch(logout())
           dispatch(clearDoc())
         }
       } catch (error) {
-        console.log("No user sessions")
+        console.log("1. APPWRITE: No user sessions", "-AppRender:", appRender)
         dispatch(logout())
         dispatch(clearDoc())
       } finally {
-        console.log("Session user details- ",userData)
-        console.log("authstatus : ", authStatus)
+        console.log("1. REDUX:Session user details- ",userData, "-AppRender:", appRender)
+        console.log("1. REDUX:authstatus : ", authStatus, "-AppRender:", appRender)
         setAppLoading(false)
       }
   }
@@ -53,13 +55,16 @@ function App() {
   //GET ALL POSTS FROM APPWRITE
   useEffect(()=>{
     dispatch(load())
+    console.log("2. REDUX:Session user details- ",userData, "-PostFetchRenderCount:", rerenders)
+    console.log("2. REDUX:authstatus : ", authStatus, "-PostFetchRenderCount:", rerenders)
+    console.log("2. REDUX:userId-", userID, "-PostFetchRenderCount:", rerenders)
     setRerenders(prev => prev+1)
     if(userID){
-      console.log("userId-", userID)
+      
       postServ.getAllPosts(userID)
       .then((postsData)=> {
       if(postsData) {
-        console.log(postsData)
+        console.log("2. APPWRITE: ", postsData, "-PostFetchRenderCount:", rerenders)
         dispatch(addPosts(postsData.documents))
       }}
       ).finally(()=>dispatch(notLoad()))
@@ -69,13 +74,21 @@ function App() {
   },[userID, update])
 
 
-  return isAppLoading? <LoaderAnimation/> : 
+  return isAppLoading? (
+    <div className='w-full h-screen flex justify-center items-center 
+    dark:bg-gradient-to-r from-violet-950 via-black to-violet-950
+    bg-blue-100'>
+      <LoaderAnimation/>
+    </div>
+   ) : 
   (
     <>  
       <div className=' fixed w-full top-0 z-10 '>
         <Header/>
       </div>
-      <div className='flex flex-col min-h-screen w-full bg-gradient-to-r from-violet-950 via-black to-violet-950 '>
+      <div className='flex flex-col min-h-screen w-full 
+      dark:bg-gradient-to-r from-violet-950 via-black to-violet-950 
+      bg-indigo-100'>
         <div className='flex-grow py-24 md:mt-3 mt-10 transition-all duration-100'>
           {isLoading? <LoaderAnimation/> : <Outlet/>  }
         </div>

@@ -17,6 +17,7 @@ import AnimatedPage from "./AnimatedPage";
 import LoaderAnimation from "./LoaderAnimation";
 import Footer from "./Footer";
 import PostForm from "./Postform";
+import Protected from "./Protected";
 
 
 
@@ -24,4 +25,4 @@ import PostForm from "./Postform";
 
 
 
-export {Header, Footer, Home, Container, Postcard, PostForm, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post, Editpost, AnimatedPage, LoaderAnimation} 
+export {Header, Footer, Home, Container, Postcard, PostForm, Input, Signup, Login, Button, Logout, Addpost, Allpost, Select, RTE, Post, Editpost, AnimatedPage, LoaderAnimation, Protected} 

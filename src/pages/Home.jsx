@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <div className="md:mt-5 mt-20 transition-all duration-100">
         <MainText>Welcome {userName}</MainText>
-        <div className="w-fit mx-auto text-center text-white text-xl font-semibold py-5">
+        <div className="w-fit mx-auto text-center dark:text-white text-black text-xl font-semibold py-5">
           <p>You have {totalDocuments} posts</p>
         </div>
       </div>
