@@ -21,13 +21,18 @@ const [className, setClassName] = useState(true)
           </div>
           <h1 className="w-full dark:bg-indigo-950 bg-indigo-200 text-xs text-center p-2 mx-auto">Made with React, 2024</h1>          
         </div>
-        <div className="md:absolute relative mt-2 py-1 left-2">
+        <div className="md:absolute relative mt-2 py-1 left-2 rounded-xl dark:bg-blue-950 p-3 bg-blue-50">
           <label htmlFor="fixed" className="">Toggle Fixed Footer</label>
           <input id="fixed" type="checkbox" checked={className} onChange={() => {setClassName(prev=>!prev)}} className="ms-2"/>
         </div>
-        <div className="md:absolute relative mt-2 py-1 right-2 text-right">
-          <h3 className="p-2">Sample Login Dataset in Github Readme</h3>
-          <a className="italic hover:bg-black hover:text-indigo-300 p-2 rounded-md transition-all " target="_blank" href='https://github.com/Helezonic/react-blog-project'><u>Github Repo</u></a>
+        <div className="md:absolute relative mt-2 py-1 right-2 text-left rounded-xl dark:bg-blue-950 p-3 bg-blue-50">
+          <h3>Sample Login Dataset</h3>
+          <ul>
+            <li>Email : shuaibaa@gmail.com</li>
+            
+            <li>Password : abcdefgh</li>
+            <li></li>
+          </ul>
         </div>
       </div>
     </>

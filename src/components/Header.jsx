@@ -82,6 +82,9 @@ export default function Header () {
           </nav>
           <div className="md:absolute right-3 top-2">
             <div className="flex justify-center items-center">
+              <a className=" cursor-pointer hover:translate-y-0.5 " href="https://github.com/Helezonic/react-blog-project" target="_blank">
+                <img src="../../public/github-mark.png" className="md:w-[35px] w-[20px] bg-white hover:shadow-lg rounded-full fill-black hover:bg-transparent" />
+              </a>
               <button className="mx-2 p-2 w-50 rounded-full dark:bg-black bg-white dark:text-white text-black dark:hover:bg-violet-300 dark:hover:text-black hover:bg-violet-700 hover:text-white font-bold italic" 
               onClick={toggleDark}>{darkMode? "Light" : "Dark"}</button>
               <Logout/>
