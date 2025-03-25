@@ -21,7 +21,7 @@ A Full Stack React Blog CRUD Application with Appwrite as Backend Service
  - User Authentication with Name, Email, Password 
     - SignUp [Create User]
     - Login [Session start]
-    - < Credential Update [Addable] >
+    - <i>` Credential Update [Addable] ` </i>
  - Post with Title, Content, Image
     - Create [Add Post]
     - Read [View Post]
@@ -29,24 +29,24 @@ A Full Stack React Blog CRUD Application with Appwrite as Backend Service
     - Delete [Delete Post]
  - Querying
     - Toggle by Status - Active and Inactive Posts
-    - < Search Field - search by keywords [Addable] >
+    - <i>` Search Field - search by keywords [Addable] ` </i>
  - Paginaton
-    - < Limit posts to 12 in a single page [Addable] >   
+    - <i>` Limit posts to 12 in a single page [Addable] ` </i>
 ---
 - [x] Responsive Website
 - [x] Minimal page transitions
-- [] Dark Mode
-- [] Lazy Loading Images
-- [] Show created and updated date and sort by date
+- [x] Dark/Light Mode Toggle
 - [x] Toggle Footer to being Fixed at bottom of Viewport.
-- [] Add popups for successful edit, add, delete, login, logout
 - [x] Routing - Config Based Routing
-- [] Page Protection/ Authorization - RBAC - Role Based Access Control
+- [x] Page Protection/ Authorization - RBAC - Role Based Access Control
 - [x] Status Toggle
-- [] Preload Editor before page loads
 - [x] No slug, wrong slug - error cases
 - [x] Loading animation during asynchronous events
-- [x] Session checking before application launch 
+- [x] Session checking before application launch
+- [ ] Lazy Loading Images
+- [ ] Show created and updated date and sort by date
+- [ ] Preload Editor before page loads
+- [ ] Add popups for successful edit, add, delete, login, logout
 
 ## Libraries Used
 - Appwrite [For Backend Services - Auth, Database, Bucket]
