@@ -34,6 +34,9 @@ const [className, setClassName] = useState(true)
             <li></li>
           </ul>
         </div>
+        <a href="https://www.coolseotools.com/website-visitor-counter" target="_blank" title="Web Counter">
+        <img src="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=p&num=5&uid=bib"  title="Web Counter" alt="AtoZSEOTools Web Counter" />
+        </a>
       </div>
     </>
   )
