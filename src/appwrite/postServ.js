@@ -106,7 +106,7 @@ class PostService {
 
     getFilePreview(fileID){
         try {
-                return this.bucket.getFilePreview(
+                return this.bucket.getFileView(
                 conf.appwrite_bucket,
                 fileID
             
