@@ -108,8 +108,8 @@ class PostService {
         try {
                 return this.bucket.getFilePreview(
                 conf.appwrite_bucket,
-                fileID,
-                0, 500
+                fileID
+            
             )
         } catch (error) {
             console.log("Appwrite service :: Get File Preview fail")
