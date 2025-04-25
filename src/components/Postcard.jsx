@@ -9,7 +9,7 @@ function Postcard({className,...post}) {
     <div key={post?.$id} className={`w-[150px] relative h-[200px] rounded-xl border-y-0 m-1 bg-indigo-400 drop-shadow-none overflow-hidden hover: hover:rounded-sm hover:border-y-2 hover:-translate-y-1 hover:drop-shadow-[0px_5px_0px_rgba(0,50,50,0.7)] hover:border-indigo-200 duration-100 outline-4 outline-gray-900 outline group ${className}`}>
       <Link to={`/posts/${post.$id}`}  >
           <div className='w-full h-3/4 group'>
-              <img src={postServ.getFilePreview(post.featuredImage)}  overflow-hidden"/>
+              <img src={postServ.getFilePreview(post.featuredImage)}  className="overflow-hidden"/>
           </div>
           
           <div className='absolute w-full bottom-0 left-0 h-1/2 hover:-translate-y-0 duration-150 group drop-shadow-lg'>
