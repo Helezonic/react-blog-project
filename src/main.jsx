@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { Home, Signup, Login, Allpost, Addpost, Post, Editpost, Protected } from "./components/index.js"
+import { Home, Signup, Login, Allpost, Addpost, Post, Editpost, Protected, LoaderAnimation } from "./components/index.js"
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 import Errorpage from './pages/Errorpage'
+
+const AddPostPage = lazy(() => import('./pages/Addpost.jsx'));
 
 const router = createBrowserRouter (
   createRoutesFromElements(
@@ -29,7 +31,9 @@ const router = createBrowserRouter (
       }/>
     <Route path ='addpost' element={
       <Protected authentication={true}>
-        <Addpost/>
+        <Suspense fallback={<LoaderAnimation />}>
+          <AddPostPage/>
+        </Suspense>
       </Protected>
       }/>
     <Route path ='posts/:slug' element={
